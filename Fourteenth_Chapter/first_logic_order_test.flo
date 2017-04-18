@@ -1,0 +1,9 @@
+a = b
+forall x: a = b
+exists y: a -> b
+~ true | true & true -> forall x: exists y: true
+(forall x: exists y: true) -> true & ~ true -> true
+true & forall x: x = x
+true & (forall x: x = x)
+forall x: x = x & true
+(forall x: x = x) & true

@@ -1,0 +1,598 @@
+Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> FORMULA
+Rule 1     FORMULA -> FORALL SYMBOL COLON FORMULA
+Rule 2     FORMULA -> EXISTS SYMBOL COLON FORMULA
+Rule 3     FORMULA -> TRUE
+Rule 4     FORMULA -> FALSE
+Rule 5     FORMULA -> FORMULA IMPLIES FORMULA
+Rule 6     FORMULA -> FORMULA OR FORMULA
+Rule 7     FORMULA -> FORMULA AND FORMULA
+Rule 8     FORMULA -> NOT FORMULA
+Rule 9     FORMULA -> LPAREN FORMULA RPAREN
+Rule 10    FORMULA -> TERM EQUALS TERM
+Rule 11    FORMULA -> SYMBOL
+Rule 12    TERM -> SYMBOL LPAREN TERMLIST RPAREN
+Rule 13    TERM -> SYMBOL
+Rule 14    TERMLIST -> TERM COMMA TERMLIST
+Rule 15    TERMLIST -> TERM
+
+Terminals, with rules where they appear
+
+AND                  : 7
+COLON                : 1 2
+COMMA                : 14
+EQUALS               : 10
+EXISTS               : 2
+FALSE                : 4
+FORALL               : 1
+IMPLIES              : 5
+LPAREN               : 9 12
+NOT                  : 8
+OR                   : 6
+RPAREN               : 9 12
+SYMBOL               : 1 2 11 12 13
+TRUE                 : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+FORMULA              : 1 2 5 5 6 6 7 7 8 9 0
+TERM                 : 10 10 14 15
+TERMLIST             : 12 14
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . FORMULA
+    (1) FORMULA -> . FORALL SYMBOL COLON FORMULA
+    (2) FORMULA -> . EXISTS SYMBOL COLON FORMULA
+    (3) FORMULA -> . TRUE
+    (4) FORMULA -> . FALSE
+    (5) FORMULA -> . FORMULA IMPLIES FORMULA
+    (6) FORMULA -> . FORMULA OR FORMULA
+    (7) FORMULA -> . FORMULA AND FORMULA
+    (8) FORMULA -> . NOT FORMULA
+    (9) FORMULA -> . LPAREN FORMULA RPAREN
+    (10) FORMULA -> . TERM EQUALS TERM
+    (11) FORMULA -> . SYMBOL
+    (12) TERM -> . SYMBOL LPAREN TERMLIST RPAREN
+    (13) TERM -> . SYMBOL
+
+    FORALL          shift and go to state 7
+    EXISTS          shift and go to state 3
+    TRUE            shift and go to state 5
+    FALSE           shift and go to state 8
+    NOT             shift and go to state 2
+    LPAREN          shift and go to state 9
+    SYMBOL          shift and go to state 1
+
+    TERM                           shift and go to state 4
+    FORMULA                        shift and go to state 6
+
+state 1
+
+    (11) FORMULA -> SYMBOL .
+    (12) TERM -> SYMBOL . LPAREN TERMLIST RPAREN
+    (13) TERM -> SYMBOL .
+
+    IMPLIES         reduce using rule 11 (FORMULA -> SYMBOL .)
+    OR              reduce using rule 11 (FORMULA -> SYMBOL .)
+    AND             reduce using rule 11 (FORMULA -> SYMBOL .)
+    $end            reduce using rule 11 (FORMULA -> SYMBOL .)
+    RPAREN          reduce using rule 11 (FORMULA -> SYMBOL .)
+    LPAREN          shift and go to state 10
+    EQUALS          reduce using rule 13 (TERM -> SYMBOL .)
+
+
+state 2
+
+    (8) FORMULA -> NOT . FORMULA
+    (1) FORMULA -> . FORALL SYMBOL COLON FORMULA
+    (2) FORMULA -> . EXISTS SYMBOL COLON FORMULA
+    (3) FORMULA -> . TRUE
+    (4) FORMULA -> . FALSE
+    (5) FORMULA -> . FORMULA IMPLIES FORMULA
+    (6) FORMULA -> . FORMULA OR FORMULA
+    (7) FORMULA -> . FORMULA AND FORMULA
+    (8) FORMULA -> . NOT FORMULA
+    (9) FORMULA -> . LPAREN FORMULA RPAREN
+    (10) FORMULA -> . TERM EQUALS TERM
+    (11) FORMULA -> . SYMBOL
+    (12) TERM -> . SYMBOL LPAREN TERMLIST RPAREN
+    (13) TERM -> . SYMBOL
+
+    FORALL          shift and go to state 7
+    EXISTS          shift and go to state 3
+    TRUE            shift and go to state 5
+    FALSE           shift and go to state 8
+    NOT             shift and go to state 2
+    LPAREN          shift and go to state 9
+    SYMBOL          shift and go to state 1
+
+    TERM                           shift and go to state 4
+    FORMULA                        shift and go to state 11
+
+state 3
+
+    (2) FORMULA -> EXISTS . SYMBOL COLON FORMULA
+
+    SYMBOL          shift and go to state 12
+
+
+state 4
+
+    (10) FORMULA -> TERM . EQUALS TERM
+
+    EQUALS          shift and go to state 13
+
+
+state 5
+
+    (3) FORMULA -> TRUE .
+
+    IMPLIES         reduce using rule 3 (FORMULA -> TRUE .)
+    OR              reduce using rule 3 (FORMULA -> TRUE .)
+    AND             reduce using rule 3 (FORMULA -> TRUE .)
+    $end            reduce using rule 3 (FORMULA -> TRUE .)
+    RPAREN          reduce using rule 3 (FORMULA -> TRUE .)
+
+
+state 6
+
+    (0) S' -> FORMULA .
+    (5) FORMULA -> FORMULA . IMPLIES FORMULA
+    (6) FORMULA -> FORMULA . OR FORMULA
+    (7) FORMULA -> FORMULA . AND FORMULA
+
+    IMPLIES         shift and go to state 14
+    OR              shift and go to state 16
+    AND             shift and go to state 15
+
+
+state 7
+
+    (1) FORMULA -> FORALL . SYMBOL COLON FORMULA
+
+    SYMBOL          shift and go to state 17
+
+
+state 8
+
+    (4) FORMULA -> FALSE .
+
+    IMPLIES         reduce using rule 4 (FORMULA -> FALSE .)
+    OR              reduce using rule 4 (FORMULA -> FALSE .)
+    AND             reduce using rule 4 (FORMULA -> FALSE .)
+    $end            reduce using rule 4 (FORMULA -> FALSE .)
+    RPAREN          reduce using rule 4 (FORMULA -> FALSE .)
+
+
+state 9
+
+    (9) FORMULA -> LPAREN . FORMULA RPAREN
+    (1) FORMULA -> . FORALL SYMBOL COLON FORMULA
+    (2) FORMULA -> . EXISTS SYMBOL COLON FORMULA
+    (3) FORMULA -> . TRUE
+    (4) FORMULA -> . FALSE
+    (5) FORMULA -> . FORMULA IMPLIES FORMULA
+    (6) FORMULA -> . FORMULA OR FORMULA
+    (7) FORMULA -> . FORMULA AND FORMULA
+    (8) FORMULA -> . NOT FORMULA
+    (9) FORMULA -> . LPAREN FORMULA RPAREN
+    (10) FORMULA -> . TERM EQUALS TERM
+    (11) FORMULA -> . SYMBOL
+    (12) TERM -> . SYMBOL LPAREN TERMLIST RPAREN
+    (13) TERM -> . SYMBOL
+
+    FORALL          shift and go to state 7
+    EXISTS          shift and go to state 3
+    TRUE            shift and go to state 5
+    FALSE           shift and go to state 8
+    NOT             shift and go to state 2
+    LPAREN          shift and go to state 9
+    SYMBOL          shift and go to state 1
+
+    TERM                           shift and go to state 4
+    FORMULA                        shift and go to state 18
+
+state 10
+
+    (12) TERM -> SYMBOL LPAREN . TERMLIST RPAREN
+    (14) TERMLIST -> . TERM COMMA TERMLIST
+    (15) TERMLIST -> . TERM
+    (12) TERM -> . SYMBOL LPAREN TERMLIST RPAREN
+    (13) TERM -> . SYMBOL
+
+    SYMBOL          shift and go to state 20
+
+    TERMLIST                       shift and go to state 19
+    TERM                           shift and go to state 21
+
+state 11
+
+    (8) FORMULA -> NOT FORMULA .
+    (5) FORMULA -> FORMULA . IMPLIES FORMULA
+    (6) FORMULA -> FORMULA . OR FORMULA
+    (7) FORMULA -> FORMULA . AND FORMULA
+
+    IMPLIES         reduce using rule 8 (FORMULA -> NOT FORMULA .)
+    OR              reduce using rule 8 (FORMULA -> NOT FORMULA .)
+    AND             reduce using rule 8 (FORMULA -> NOT FORMULA .)
+    $end            reduce using rule 8 (FORMULA -> NOT FORMULA .)
+    RPAREN          reduce using rule 8 (FORMULA -> NOT FORMULA .)
+
+  ! IMPLIES         [ shift and go to state 14 ]
+  ! OR              [ shift and go to state 16 ]
+  ! AND             [ shift and go to state 15 ]
+
+
+state 12
+
+    (2) FORMULA -> EXISTS SYMBOL . COLON FORMULA
+
+    COLON           shift and go to state 22
+
+
+state 13
+
+    (10) FORMULA -> TERM EQUALS . TERM
+    (12) TERM -> . SYMBOL LPAREN TERMLIST RPAREN
+    (13) TERM -> . SYMBOL
+
+    SYMBOL          shift and go to state 20
+
+    TERM                           shift and go to state 23
+
+state 14
+
+    (5) FORMULA -> FORMULA IMPLIES . FORMULA
+    (1) FORMULA -> . FORALL SYMBOL COLON FORMULA
+    (2) FORMULA -> . EXISTS SYMBOL COLON FORMULA
+    (3) FORMULA -> . TRUE
+    (4) FORMULA -> . FALSE
+    (5) FORMULA -> . FORMULA IMPLIES FORMULA
+    (6) FORMULA -> . FORMULA OR FORMULA
+    (7) FORMULA -> . FORMULA AND FORMULA
+    (8) FORMULA -> . NOT FORMULA
+    (9) FORMULA -> . LPAREN FORMULA RPAREN
+    (10) FORMULA -> . TERM EQUALS TERM
+    (11) FORMULA -> . SYMBOL
+    (12) TERM -> . SYMBOL LPAREN TERMLIST RPAREN
+    (13) TERM -> . SYMBOL
+
+    FORALL          shift and go to state 7
+    EXISTS          shift and go to state 3
+    TRUE            shift and go to state 5
+    FALSE           shift and go to state 8
+    NOT             shift and go to state 2
+    LPAREN          shift and go to state 9
+    SYMBOL          shift and go to state 1
+
+    TERM                           shift and go to state 4
+    FORMULA                        shift and go to state 24
+
+state 15
+
+    (7) FORMULA -> FORMULA AND . FORMULA
+    (1) FORMULA -> . FORALL SYMBOL COLON FORMULA
+    (2) FORMULA -> . EXISTS SYMBOL COLON FORMULA
+    (3) FORMULA -> . TRUE
+    (4) FORMULA -> . FALSE
+    (5) FORMULA -> . FORMULA IMPLIES FORMULA
+    (6) FORMULA -> . FORMULA OR FORMULA
+    (7) FORMULA -> . FORMULA AND FORMULA
+    (8) FORMULA -> . NOT FORMULA
+    (9) FORMULA -> . LPAREN FORMULA RPAREN
+    (10) FORMULA -> . TERM EQUALS TERM
+    (11) FORMULA -> . SYMBOL
+    (12) TERM -> . SYMBOL LPAREN TERMLIST RPAREN
+    (13) TERM -> . SYMBOL
+
+    FORALL          shift and go to state 7
+    EXISTS          shift and go to state 3
+    TRUE            shift and go to state 5
+    FALSE           shift and go to state 8
+    NOT             shift and go to state 2
+    LPAREN          shift and go to state 9
+    SYMBOL          shift and go to state 1
+
+    TERM                           shift and go to state 4
+    FORMULA                        shift and go to state 25
+
+state 16
+
+    (6) FORMULA -> FORMULA OR . FORMULA
+    (1) FORMULA -> . FORALL SYMBOL COLON FORMULA
+    (2) FORMULA -> . EXISTS SYMBOL COLON FORMULA
+    (3) FORMULA -> . TRUE
+    (4) FORMULA -> . FALSE
+    (5) FORMULA -> . FORMULA IMPLIES FORMULA
+    (6) FORMULA -> . FORMULA OR FORMULA
+    (7) FORMULA -> . FORMULA AND FORMULA
+    (8) FORMULA -> . NOT FORMULA
+    (9) FORMULA -> . LPAREN FORMULA RPAREN
+    (10) FORMULA -> . TERM EQUALS TERM
+    (11) FORMULA -> . SYMBOL
+    (12) TERM -> . SYMBOL LPAREN TERMLIST RPAREN
+    (13) TERM -> . SYMBOL
+
+    FORALL          shift and go to state 7
+    EXISTS          shift and go to state 3
+    TRUE            shift and go to state 5
+    FALSE           shift and go to state 8
+    NOT             shift and go to state 2
+    LPAREN          shift and go to state 9
+    SYMBOL          shift and go to state 1
+
+    TERM                           shift and go to state 4
+    FORMULA                        shift and go to state 26
+
+state 17
+
+    (1) FORMULA -> FORALL SYMBOL . COLON FORMULA
+
+    COLON           shift and go to state 27
+
+
+state 18
+
+    (9) FORMULA -> LPAREN FORMULA . RPAREN
+    (5) FORMULA -> FORMULA . IMPLIES FORMULA
+    (6) FORMULA -> FORMULA . OR FORMULA
+    (7) FORMULA -> FORMULA . AND FORMULA
+
+    RPAREN          shift and go to state 28
+    IMPLIES         shift and go to state 14
+    OR              shift and go to state 16
+    AND             shift and go to state 15
+
+
+state 19
+
+    (12) TERM -> SYMBOL LPAREN TERMLIST . RPAREN
+
+    RPAREN          shift and go to state 29
+
+
+state 20
+
+    (12) TERM -> SYMBOL . LPAREN TERMLIST RPAREN
+    (13) TERM -> SYMBOL .
+
+    LPAREN          shift and go to state 10
+    COMMA           reduce using rule 13 (TERM -> SYMBOL .)
+    RPAREN          reduce using rule 13 (TERM -> SYMBOL .)
+    IMPLIES         reduce using rule 13 (TERM -> SYMBOL .)
+    OR              reduce using rule 13 (TERM -> SYMBOL .)
+    AND             reduce using rule 13 (TERM -> SYMBOL .)
+    $end            reduce using rule 13 (TERM -> SYMBOL .)
+
+
+state 21
+
+    (14) TERMLIST -> TERM . COMMA TERMLIST
+    (15) TERMLIST -> TERM .
+
+    COMMA           shift and go to state 30
+    RPAREN          reduce using rule 15 (TERMLIST -> TERM .)
+
+
+state 22
+
+    (2) FORMULA -> EXISTS SYMBOL COLON . FORMULA
+    (1) FORMULA -> . FORALL SYMBOL COLON FORMULA
+    (2) FORMULA -> . EXISTS SYMBOL COLON FORMULA
+    (3) FORMULA -> . TRUE
+    (4) FORMULA -> . FALSE
+    (5) FORMULA -> . FORMULA IMPLIES FORMULA
+    (6) FORMULA -> . FORMULA OR FORMULA
+    (7) FORMULA -> . FORMULA AND FORMULA
+    (8) FORMULA -> . NOT FORMULA
+    (9) FORMULA -> . LPAREN FORMULA RPAREN
+    (10) FORMULA -> . TERM EQUALS TERM
+    (11) FORMULA -> . SYMBOL
+    (12) TERM -> . SYMBOL LPAREN TERMLIST RPAREN
+    (13) TERM -> . SYMBOL
+
+    FORALL          shift and go to state 7
+    EXISTS          shift and go to state 3
+    TRUE            shift and go to state 5
+    FALSE           shift and go to state 8
+    NOT             shift and go to state 2
+    LPAREN          shift and go to state 9
+    SYMBOL          shift and go to state 1
+
+    TERM                           shift and go to state 4
+    FORMULA                        shift and go to state 31
+
+state 23
+
+    (10) FORMULA -> TERM EQUALS TERM .
+
+    IMPLIES         reduce using rule 10 (FORMULA -> TERM EQUALS TERM .)
+    OR              reduce using rule 10 (FORMULA -> TERM EQUALS TERM .)
+    AND             reduce using rule 10 (FORMULA -> TERM EQUALS TERM .)
+    $end            reduce using rule 10 (FORMULA -> TERM EQUALS TERM .)
+    RPAREN          reduce using rule 10 (FORMULA -> TERM EQUALS TERM .)
+
+
+state 24
+
+    (5) FORMULA -> FORMULA IMPLIES FORMULA .
+    (5) FORMULA -> FORMULA . IMPLIES FORMULA
+    (6) FORMULA -> FORMULA . OR FORMULA
+    (7) FORMULA -> FORMULA . AND FORMULA
+
+    $end            reduce using rule 5 (FORMULA -> FORMULA IMPLIES FORMULA .)
+    RPAREN          reduce using rule 5 (FORMULA -> FORMULA IMPLIES FORMULA .)
+    IMPLIES         shift and go to state 14
+    OR              shift and go to state 16
+    AND             shift and go to state 15
+
+  ! IMPLIES         [ reduce using rule 5 (FORMULA -> FORMULA IMPLIES FORMULA .) ]
+  ! OR              [ reduce using rule 5 (FORMULA -> FORMULA IMPLIES FORMULA .) ]
+  ! AND             [ reduce using rule 5 (FORMULA -> FORMULA IMPLIES FORMULA .) ]
+
+
+state 25
+
+    (7) FORMULA -> FORMULA AND FORMULA .
+    (5) FORMULA -> FORMULA . IMPLIES FORMULA
+    (6) FORMULA -> FORMULA . OR FORMULA
+    (7) FORMULA -> FORMULA . AND FORMULA
+
+    IMPLIES         reduce using rule 7 (FORMULA -> FORMULA AND FORMULA .)
+    OR              reduce using rule 7 (FORMULA -> FORMULA AND FORMULA .)
+    AND             reduce using rule 7 (FORMULA -> FORMULA AND FORMULA .)
+    $end            reduce using rule 7 (FORMULA -> FORMULA AND FORMULA .)
+    RPAREN          reduce using rule 7 (FORMULA -> FORMULA AND FORMULA .)
+
+  ! IMPLIES         [ shift and go to state 14 ]
+  ! OR              [ shift and go to state 16 ]
+  ! AND             [ shift and go to state 15 ]
+
+
+state 26
+
+    (6) FORMULA -> FORMULA OR FORMULA .
+    (5) FORMULA -> FORMULA . IMPLIES FORMULA
+    (6) FORMULA -> FORMULA . OR FORMULA
+    (7) FORMULA -> FORMULA . AND FORMULA
+
+    IMPLIES         reduce using rule 6 (FORMULA -> FORMULA OR FORMULA .)
+    OR              reduce using rule 6 (FORMULA -> FORMULA OR FORMULA .)
+    $end            reduce using rule 6 (FORMULA -> FORMULA OR FORMULA .)
+    RPAREN          reduce using rule 6 (FORMULA -> FORMULA OR FORMULA .)
+    AND             shift and go to state 15
+
+  ! AND             [ reduce using rule 6 (FORMULA -> FORMULA OR FORMULA .) ]
+  ! IMPLIES         [ shift and go to state 14 ]
+  ! OR              [ shift and go to state 16 ]
+
+
+state 27
+
+    (1) FORMULA -> FORALL SYMBOL COLON . FORMULA
+    (1) FORMULA -> . FORALL SYMBOL COLON FORMULA
+    (2) FORMULA -> . EXISTS SYMBOL COLON FORMULA
+    (3) FORMULA -> . TRUE
+    (4) FORMULA -> . FALSE
+    (5) FORMULA -> . FORMULA IMPLIES FORMULA
+    (6) FORMULA -> . FORMULA OR FORMULA
+    (7) FORMULA -> . FORMULA AND FORMULA
+    (8) FORMULA -> . NOT FORMULA
+    (9) FORMULA -> . LPAREN FORMULA RPAREN
+    (10) FORMULA -> . TERM EQUALS TERM
+    (11) FORMULA -> . SYMBOL
+    (12) TERM -> . SYMBOL LPAREN TERMLIST RPAREN
+    (13) TERM -> . SYMBOL
+
+    FORALL          shift and go to state 7
+    EXISTS          shift and go to state 3
+    TRUE            shift and go to state 5
+    FALSE           shift and go to state 8
+    NOT             shift and go to state 2
+    LPAREN          shift and go to state 9
+    SYMBOL          shift and go to state 1
+
+    TERM                           shift and go to state 4
+    FORMULA                        shift and go to state 32
+
+state 28
+
+    (9) FORMULA -> LPAREN FORMULA RPAREN .
+
+    IMPLIES         reduce using rule 9 (FORMULA -> LPAREN FORMULA RPAREN .)
+    OR              reduce using rule 9 (FORMULA -> LPAREN FORMULA RPAREN .)
+    AND             reduce using rule 9 (FORMULA -> LPAREN FORMULA RPAREN .)
+    $end            reduce using rule 9 (FORMULA -> LPAREN FORMULA RPAREN .)
+    RPAREN          reduce using rule 9 (FORMULA -> LPAREN FORMULA RPAREN .)
+
+
+state 29
+
+    (12) TERM -> SYMBOL LPAREN TERMLIST RPAREN .
+
+    EQUALS          reduce using rule 12 (TERM -> SYMBOL LPAREN TERMLIST RPAREN .)
+    COMMA           reduce using rule 12 (TERM -> SYMBOL LPAREN TERMLIST RPAREN .)
+    RPAREN          reduce using rule 12 (TERM -> SYMBOL LPAREN TERMLIST RPAREN .)
+    IMPLIES         reduce using rule 12 (TERM -> SYMBOL LPAREN TERMLIST RPAREN .)
+    OR              reduce using rule 12 (TERM -> SYMBOL LPAREN TERMLIST RPAREN .)
+    AND             reduce using rule 12 (TERM -> SYMBOL LPAREN TERMLIST RPAREN .)
+    $end            reduce using rule 12 (TERM -> SYMBOL LPAREN TERMLIST RPAREN .)
+
+
+state 30
+
+    (14) TERMLIST -> TERM COMMA . TERMLIST
+    (14) TERMLIST -> . TERM COMMA TERMLIST
+    (15) TERMLIST -> . TERM
+    (12) TERM -> . SYMBOL LPAREN TERMLIST RPAREN
+    (13) TERM -> . SYMBOL
+
+    SYMBOL          shift and go to state 20
+
+    TERMLIST                       shift and go to state 33
+    TERM                           shift and go to state 21
+
+state 31
+
+    (2) FORMULA -> EXISTS SYMBOL COLON FORMULA .
+    (5) FORMULA -> FORMULA . IMPLIES FORMULA
+    (6) FORMULA -> FORMULA . OR FORMULA
+    (7) FORMULA -> FORMULA . AND FORMULA
+
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+    $end            reduce using rule 2 (FORMULA -> EXISTS SYMBOL COLON FORMULA .)
+    RPAREN          reduce using rule 2 (FORMULA -> EXISTS SYMBOL COLON FORMULA .)
+    IMPLIES         shift and go to state 14
+    OR              shift and go to state 16
+    AND             shift and go to state 15
+
+  ! IMPLIES         [ reduce using rule 2 (FORMULA -> EXISTS SYMBOL COLON FORMULA .) ]
+  ! OR              [ reduce using rule 2 (FORMULA -> EXISTS SYMBOL COLON FORMULA .) ]
+  ! AND             [ reduce using rule 2 (FORMULA -> EXISTS SYMBOL COLON FORMULA .) ]
+
+
+state 32
+
+    (1) FORMULA -> FORALL SYMBOL COLON FORMULA .
+    (5) FORMULA -> FORMULA . IMPLIES FORMULA
+    (6) FORMULA -> FORMULA . OR FORMULA
+    (7) FORMULA -> FORMULA . AND FORMULA
+
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+    $end            reduce using rule 1 (FORMULA -> FORALL SYMBOL COLON FORMULA .)
+    RPAREN          reduce using rule 1 (FORMULA -> FORALL SYMBOL COLON FORMULA .)
+    IMPLIES         shift and go to state 14
+    OR              shift and go to state 16
+    AND             shift and go to state 15
+
+  ! IMPLIES         [ reduce using rule 1 (FORMULA -> FORALL SYMBOL COLON FORMULA .) ]
+  ! OR              [ reduce using rule 1 (FORMULA -> FORALL SYMBOL COLON FORMULA .) ]
+  ! AND             [ reduce using rule 1 (FORMULA -> FORALL SYMBOL COLON FORMULA .) ]
+
+
+state 33
+
+    (14) TERMLIST -> TERM COMMA TERMLIST .
+
+    RPAREN          reduce using rule 14 (TERMLIST -> TERM COMMA TERMLIST .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for IMPLIES in state 31 resolved as shift
+WARNING: shift/reduce conflict for OR in state 31 resolved as shift
+WARNING: shift/reduce conflict for AND in state 31 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 32 resolved as shift
+WARNING: shift/reduce conflict for OR in state 32 resolved as shift
+WARNING: shift/reduce conflict for AND in state 32 resolved as shift
