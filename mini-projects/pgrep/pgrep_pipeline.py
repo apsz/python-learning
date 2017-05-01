@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# 0.7 sec
+# ~0.7 sec
 
 import os
 import argparse
