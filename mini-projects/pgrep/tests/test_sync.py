@@ -5,7 +5,7 @@ import sys
 import io
 import unittest
 import unittest.mock
-from pgrep import pgrep_sync
+import pgrep_sync
 
 
 class ReplaceStandardOutput:
