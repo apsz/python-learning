@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 
 
-import os
 import sys
 import io
 import unittest
 import unittest.mock
-import pgrep_sync
+from pgrep import pgrep_sync
 
 
 class ReplaceStandardOutput:
